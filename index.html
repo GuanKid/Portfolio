@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,13 +24,13 @@
 
     :root{
       --bg:#050816;
-      --card:rgba(255,255,255,0.06);
+      --card:rgba(255,255,255,0.05);
       --text:#ffffff;
-      --muted:#b0b7d1;
+      --muted:#aeb6d4;
       --primary:#5b8cff;
       --secondary:#8e6bff;
-      --border:rgba(255,255,255,0.1);
-      --glow:rgba(91,140,255,0.4);
+      --border:rgba(255,255,255,0.08);
+      --glow:rgba(91,140,255,0.25);
     }
 
     body{
@@ -38,110 +39,92 @@
       color:var(--text);
       overflow-x:hidden;
       position:relative;
+      line-height:1.7;
     }
 
-    body::before{
-      content:'';
-      position:fixed;
-      width:500px;
-      height:500px;
-      background:radial-gradient(circle, rgba(91,140,255,0.18), transparent 70%);
-      top:-100px;
-      left:-100px;
-      z-index:-1;
-      animation:pulse 8s infinite alternate;
-    }
-
+    body::before,
     body::after{
       content:'';
       position:fixed;
-      width:500px;
-      height:500px;
-      background:radial-gradient(circle, rgba(142,107,255,0.18), transparent 70%);
-      bottom:-100px;
-      right:-100px;
+      width:420px;
+      height:420px;
+      border-radius:50%;
       z-index:-1;
-      animation:pulse 10s infinite alternate-reverse;
+      filter:blur(80px);
+      opacity:0.35;
     }
 
-    @keyframes pulse{
-      from{
-        transform:scale(1) translateY(0px);
-      }
-      to{
-        transform:scale(1.2) translateY(30px);
-      }
+    body::before{
+      background:#5b8cff;
+      top:-100px;
+      left:-100px;
+    }
+
+    body::after{
+      background:#8e6bff;
+      bottom:-100px;
+      right:-100px;
     }
 
     nav{
       position:fixed;
-      top:0;
       width:100%;
+      top:0;
+      left:0;
+      padding:20px 8%;
       display:flex;
       justify-content:space-between;
       align-items:center;
-      padding:20px 8%;
       backdrop-filter:blur(12px);
-      background:rgba(5,8,22,0.55);
+      background:rgba(5,8,22,0.7);
       border-bottom:1px solid var(--border);
       z-index:1000;
     }
-.logo-wrapper{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
 
-.logo-image{
-  width:52px;
-  height:52px;
-  border-radius:50%;
-  overflow:hidden;
-  border:2px solid rgba(255,255,255,0.1);
-  box-shadow:0 0 20px rgba(91,140,255,0.2);
-}
+    .logo-wrapper{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
 
-.logo-image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
+    .logo-image{
+      width:52px;
+      height:52px;
+      border-radius:50%;
+      overflow:hidden;
+      border:2px solid rgba(255,255,255,0.08);
+    }
 
-.logo{
-  font-size:1.1rem;
-  font-weight:800;
-  letter-spacing:1px;
-  background:linear-gradient(90deg,var(--primary),var(--secondary));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
+    .logo-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
 
-.logo-name{
-  font-size:0.78rem;
-  font-weight:700;
-  letter-spacing:1.4px;
-  color:white;
-  display:block;
-  margin-top:3px;
-}
     .logo{
-      font-size:1.4rem;
+      font-size:1.2rem;
       font-weight:800;
       background:linear-gradient(90deg,var(--primary),var(--secondary));
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
     }
 
+    .logo-name{
+      font-size:0.75rem;
+      color:var(--muted);
+      letter-spacing:1.5px;
+    }
+
     .nav-links{
       display:flex;
-      gap:30px;
+      gap:28px;
     }
 
     .nav-links a{
-      text-decoration:none;
       color:var(--muted);
-      transition:0.3s;
-      font-weight:500;
+      text-decoration:none;
+      font-size:0.95rem;
+      transition:0.3s ease;
     }
 
     .nav-links a:hover,
@@ -164,14 +147,27 @@
 
     .hero-text{
       flex:1;
-      min-width:300px;
-      animation:fadeUp 1s ease;
+      min-width:320px;
+    }
+
+    .hero-tag{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid var(--border);
+      padding:10px 18px;
+      border-radius:999px;
+      margin-bottom:28px;
+      color:var(--muted);
+      font-size:0.92rem;
     }
 
     .hero-text h1{
-      font-size:4rem;
-      line-height:1.1;
-      margin-bottom:20px;
+      font-size:4.2rem;
+      line-height:1.08;
+      margin-bottom:24px;
+      max-width:760px;
     }
 
     .hero-text h1 span{
@@ -182,10 +178,9 @@
 
     .hero-text p{
       color:var(--muted);
-      line-height:1.9;
+      max-width:760px;
+      margin-bottom:36px;
       font-size:1.05rem;
-      max-width:700px;
-      margin-bottom:30px;
     }
 
     .buttons{
@@ -211,30 +206,27 @@
       box-shadow:0 0 25px var(--glow);
     }
 
-    .btn-primary:hover{
+    .btn-primary:hover,
+    .btn-secondary:hover{
       transform:translateY(-4px);
     }
 
     .btn-secondary{
+      background:rgba(255,255,255,0.04);
       border:1px solid var(--border);
       color:white;
-      background:rgba(255,255,255,0.04);
-    }
-
-    .btn-secondary:hover{
-      background:rgba(255,255,255,0.08);
     }
 
     .hero-mini-stats{
       display:flex;
       gap:40px;
-      margin-top:50px;
+      margin-top:55px;
       flex-wrap:wrap;
     }
 
     .hero-mini-stats h3{
-      font-size:1.6rem;
-      margin-bottom:5px;
+      font-size:1.7rem;
+      margin-bottom:6px;
     }
 
     .hero-mini-stats span{
@@ -247,16 +239,24 @@
       min-width:320px;
       background:var(--card);
       border:1px solid var(--border);
-      border-radius:28px;
+      border-radius:30px;
       padding:40px;
-      backdrop-filter:blur(16px);
-      box-shadow:0 0 40px rgba(0,0,0,0.3);
-      animation:float 5s ease-in-out infinite;
+      backdrop-filter:blur(10px);
     }
 
     .hero-card h3{
-      margin-bottom:24px;
-      font-size:1.4rem;
+      margin-bottom:28px;
+      font-size:1.5rem;
+    }
+
+    .stack-category{
+      margin-bottom:26px;
+    }
+
+    .stack-category h4{
+      margin-bottom:14px;
+      color:white;
+      font-size:1rem;
     }
 
     .stack{
@@ -265,30 +265,56 @@
       gap:12px;
     }
 
-    .stack span{
-      padding:10px 16px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.07);
+    .stack span,
+    .project-tags span,
+    .focus-tags span{
+      background:rgba(255,255,255,0.05);
       border:1px solid var(--border);
       color:var(--muted);
-      font-size:0.9rem;
+      padding:9px 14px;
+      border-radius:999px;
+      font-size:0.85rem;
     }
 
     .section-title{
-      font-size:2.6rem;
+      font-size:2.8rem;
       margin-bottom:20px;
     }
 
     .section-sub{
-      color:var(--muted);
       max-width:800px;
-      line-height:1.9;
+      color:var(--muted);
       margin-bottom:60px;
+    }
+
+    .featured-focus{
+      background:linear-gradient(135deg,rgba(91,140,255,0.08),rgba(142,107,255,0.08));
+      border:1px solid var(--border);
+      padding:40px;
+      border-radius:28px;
+      margin-bottom:70px;
+    }
+
+    .featured-focus h3{
+      font-size:2rem;
+      margin-bottom:20px;
+    }
+
+    .featured-focus p{
+      color:var(--muted);
+      margin-bottom:25px;
+      max-width:900px;
+    }
+
+    .focus-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
     }
 
     .projects-grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+      grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
       gap:35px;
     }
 
@@ -297,21 +323,17 @@
       border:1px solid var(--border);
       border-radius:26px;
       overflow:hidden;
-      transition:0.4s ease;
-      backdrop-filter:blur(10px);
+      transition:0.35s ease;
     }
 
     .project-card:hover{
-      transform:translateY(-12px);
-      box-shadow:
-      0 0 20px rgba(91,140,255,0.15),
-      0 0 60px rgba(91,140,255,0.08);
+      transform:translateY(-10px);
+      box-shadow:0 0 40px rgba(91,140,255,0.08);
     }
 
     .project-image{
-      height:240px;
+      height:220px;
       overflow:hidden;
-      position:relative;
     }
 
     .project-image img{
@@ -321,44 +343,35 @@
       transition:0.5s ease;
     }
 
-    .project-card:hover .project-image img{
-      transform:scale(1.08);
-    }
-
-    .project-overlay{
-      position:absolute;
-      inset:0;
-      background:linear-gradient(to top, rgba(5,8,22,0.9), transparent);
+    .project-card:hover img{
+      transform:scale(1.05);
     }
 
     .project-content{
-      padding:26px;
+      padding:28px;
     }
 
     .project-content h3{
-      font-size:1.4rem;
-      margin-bottom:16px;
+      margin-bottom:18px;
+      font-size:1.45rem;
     }
 
     .project-content p{
       color:var(--muted);
-      line-height:1.8;
-      margin-bottom:20px;
+      margin-bottom:22px;
     }
 
-    .project-tags{
+    .project-tags,
+    .project-features{
       display:flex;
       flex-wrap:wrap;
       gap:10px;
-      margin-bottom:25px;
+      margin-bottom:22px;
     }
 
-    .project-tags span{
-      padding:8px 14px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.06);
-      color:var(--muted);
+    .project-features span{
       font-size:0.82rem;
+      color:#d7def8;
     }
 
     .project-buttons{
@@ -369,166 +382,91 @@
 
     .experience-box,
     .education-box,
-    .cert-box,
-    .info-box{
+    .skill-card,
+    .learning-box,
+    .contact-box{
       background:var(--card);
       border:1px solid var(--border);
-      border-radius:24px;
-      padding:40px;
-      margin-top:30px;
+      border-radius:28px;
+      padding:38px;
     }
 
-    .experience-box h3,
-    .education-box h3{
-      margin-bottom:10px;
-      font-size:1.4rem;
-    }
-
-    .experience-box h4{
-      color:var(--primary);
-      margin-bottom:20px;
-    }
-
-    .experience-box ul{
-      padding-left:20px;
-      line-height:2;
+    .experience-box ul,
+    .learning-box ul{
+      margin-top:20px;
+      padding-left:18px;
       color:var(--muted);
+      line-height:2;
     }
 
-    .skills{
+    .skills-grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
       gap:24px;
-    }
-
-    .skill-card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:24px;
-      padding:30px;
-      transition:0.3s;
-    }
-
-    .skill-card:hover{
-      transform:translateY(-8px);
     }
 
     .skill-card i{
       font-size:2rem;
+      margin-bottom:18px;
       color:var(--primary);
-      margin-bottom:20px;
     }
 
     .skill-card h3{
-      margin-bottom:14px;
+      margin-bottom:16px;
     }
 
     .skill-card p{
       color:var(--muted);
-      line-height:1.8;
+    }
+
+    .edu-cert-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+      gap:30px;
     }
 
     .cert-grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:18px;
-      margin-top:30px;
+      grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+      gap:14px;
+      margin-top:25px;
     }
 
     .cert-item{
       background:rgba(255,255,255,0.04);
       border:1px solid var(--border);
-      padding:18px;
-      border-radius:18px;
+      border-radius:16px;
+      padding:16px;
       color:var(--muted);
+      text-align:center;
+      font-size:0.9rem;
     }
-.edu-cert-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
-  gap:30px;
-}
-.cert-provider{
-  color:var(--muted);
-  margin-top:10px;
-  margin-bottom:30px;
-  line-height:1.8;
-  font-size:0.95rem;
-}
-.section-icon{
-  width:70px;
-  height:70px;
-  border-radius:20px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:rgba(255,255,255,0.05);
-  border:1px solid var(--border);
-  margin-bottom:25px;
-}
 
-.section-icon i{
-  font-size:1.8rem;
-  color:var(--primary);
-}
-
-.edu-item{
-  margin-top:25px;
-  padding-bottom:25px;
-  border-bottom:1px solid rgba(255,255,255,0.06);
-}
-
-.edu-item:last-child{
-  border-bottom:none;
-  padding-bottom:0;
-}
-
-.edu-item h4{
-  margin-bottom:8px;
-  font-size:1.05rem;
-}
-
-.edu-item span{
-  color:var(--muted);
-  font-size:0.95rem;
-}
-
-.cert-note{
-  margin-top:25px;
-  color:var(--muted);
-  line-height:1.7;
-  font-size:0.92rem;
-}
     .contact-box{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:30px;
-      padding:60px;
       text-align:center;
     }
 
     .contact-box h2{
-      font-size:2.4rem;
+      font-size:2.5rem;
       margin-bottom:20px;
     }
 
     .contact-box p{
       color:var(--muted);
-      max-width:700px;
-      margin:auto;
-      line-height:1.9;
-      margin-bottom:35px;
+      max-width:720px;
+      margin:0 auto 35px;
     }
 
     footer{
       text-align:center;
-      padding:30px;
-      border-top:1px solid var(--border);
+      padding:35px;
       color:var(--muted);
+      border-top:1px solid var(--border);
     }
 
     .hidden{
       opacity:0;
-      transform:translateY(40px);
+      transform:translateY(30px);
       transition:all 0.8s ease;
     }
 
@@ -537,64 +475,43 @@
       transform:translateY(0);
     }
 
-    @keyframes float{
-      0%{transform:translateY(0px);}
-      50%{transform:translateY(-12px);}
-      100%{transform:translateY(0px);}
-    }
-
-    @keyframes fadeUp{
-      from{
-        opacity:0;
-        transform:translateY(40px);
-      }
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
-    }
-
     @media(max-width:900px){
 
       .hero-text h1{
-        font-size:2.8rem;
+        font-size:3rem;
       }
 
       .nav-links{
         display:none;
       }
 
+      .hero,
+      .buttons,
+      .hero-mini-stats{
+        gap:20px;
+      }
+
       .contact-box{
-        padding:40px 25px;
+        padding:32px 24px;
       }
 
     }
 
   </style>
 </head>
-
 <body>
 
-  <nav>
+<nav>
 
-  <div class="nav-left">
+  <div class="logo-wrapper">
 
-    <div class="logo-wrapper">
+    <!-- <div class="logo-image">
+      <img src="images/profile.jpg" alt="Desire Gwanzura">
+    </div> -->
 
-      <!-- <div class="logo-image">
-        <img src="images/profile.jpg" alt="Desire Gwanzura">
-      </div> -->
-
-      <div>
-
-        <div class="logo">DG.DEV</div>
-
-        <span class="logo-name">
-          DESIRE GWANZURA
-        </span>
-
-      </div>
-
+    <div>
+      <div class="logo">DG.DEV</div>
+      <div class="logo-name">DESIRE GWANZURA</div>
     </div>
 
   </div>
@@ -604,451 +521,684 @@
     <a href="#projects">Projects</a>
     <a href="#experience">Experience</a>
     <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
     <a href="#contact">Contact</a>
   </div>
 
 </nav>
 
-  <section class="hero" id="about">
+<section class="hero" id="about">
 
-    <div class="hero-text">
+  <div class="hero-text hidden">
 
-      <h1>
-        Full Stack Developer Building <span>Modern Digital Systems</span>
-      </h1>
+    <div class="hero-tag">
+      <i class="fa-solid fa-code"></i>
+      Full Stack Software Developer
+    </div>
 
-      <p>
-        Junior Full Stack Developer with hands-on experience building and maintaining web applications using React, Node.js, ASP.NET Core, and Spring Boot. Currently working at Compuways, contributing to real-world systems involving authentication, API integration, and responsive UI design. Strong foundation in software engineering principles, with a focus on writing clean, scalable code and building user-friendly applications.
-      </p>
+    <h1>
+      Building <span>Scalable Digital Solutions</span> For Real-World Problems
+    </h1>
 
-      <div class="buttons">
+    <p>
+      I’m Desire Gwanzura, a full stack developer focused on building modern web applications using React, ASP.NET Core, Node.js, Spring Boot, and PostgreSQL. I enjoy creating systems that solve real operational problems through scalable backend architecture, responsive interfaces, authentication systems, and API integrations.
+    </p>
 
-        <a href="#projects" class="btn btn-primary">
-          <i class="fa-solid fa-code"></i>
-          View Projects
-        </a>
+    <div class="buttons">
 
-        <a href="mailto:gwanzuradesire@gmail.com" class="btn btn-secondary">
-          <i class="fa-solid fa-envelope"></i>
-          Contact Me
-        </a>
+      <a href="#projects" class="btn btn-primary">
+        <i class="fa-solid fa-layer-group"></i>
+        View My Work
+      </a>
 
+      <a href="mailto:gwanzuradesire@gmail.com" class="btn btn-secondary">
+        <i class="fa-solid fa-envelope"></i>
+        Contact Me
+      </a>
+
+      <!-- <a href="cv.html" class="btn btn-secondary">
+        <i class="fa-solid fa-file-arrow-down"></i>
+        View CV
+      </a> -->
+
+    </div>
+
+    <div class="hero-mini-stats">
+
+      <div>
+        <h3>10+</h3>
+        <span>Projects Built</span>
       </div>
 
-      <div class="hero-mini-stats">
+      <div>
+        <h3>Fullstack</h3>
+        <span>Development Focus</span>
+      </div>
 
-        <div>
-          <h3>6+</h3>
-          <span>Projects Built</span>
-        </div>
-
-        <div>
-          <h3>Fullstack</h3>
-          <span>Development Focus</span>
-        </div>
-
-        <div>
-          <h3>2026</h3>
-          <span>Open To Work</span>
-        </div>
-
+      <div>
+        <h3>2026</h3>
+        <span>Available For Opportunities</span>
       </div>
 
     </div>
 
-    <div class="hero-card">
+  </div>
 
-      <h3>Technical Stack</h3>
+  <div class="hero-card hidden">
 
+    <h3>Technical Stack</h3>
+
+    <div class="stack-category">
+      <h4>Frontend</h4>
       <div class="stack">
-
         <span>React</span>
+        <span>JavaScript</span>
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>Tailwind</span>
+      </div>
+    </div>
+
+    <div class="stack-category">
+      <h4>Backend</h4>
+      <div class="stack">
         <span>Node.js</span>
         <span>ASP.NET Core</span>
         <span>Spring Boot</span>
-        <span>JavaScript</span>
-        <span>C#</span>
-        <span>Java</span>
+        <span>Express.js</span>
+      </div>
+    </div>
+
+    <div class="stack-category">
+      <h4>Databases</h4>
+      <div class="stack">
         <span>MongoDB</span>
         <span>PostgreSQL</span>
         <span>SQL Server</span>
-        <span>Docker</span>
         <span>Firebase</span>
+      </div>
+    </div>
+
+    <div class="stack-category">
+      <h4>Tools & Technologies</h4>
+      <div class="stack">
+        <span>Docker</span>
         <span>Git</span>
-        <span>Swagger</span>
         <span>JWT</span>
+        <span>Swagger</span>
         <span>REST APIs</span>
-
       </div>
-
     </div>
 
-  </section>
+  </div>
 
-  <section id="projects">
+</section>
 
-    <h2 class="section-title hidden">Featured Projects</h2>
+<section id="projects">
 
-    <p class="section-sub hidden">
-      A collection of fullstack applications, dashboards, APIs, and modern web platforms focused on scalability, clean architecture, and polished user experiences.
-    </p>
-
-    <div class="projects-grid">
-
-      <div class="project-card hidden">
-
-        <div class="project-image">
-          <img src="images/goal.jpg" alt="">
-          <div class="project-overlay"></div>
-        </div>
-
-        <div class="project-content">
-
-          <h3>Goal Setter App</h3>
-
-          <p>
-            Built a goal-tracking application with authentication, progress tracking, and REST API integration using React and Spring Boot.
-          </p>
-
-          <div class="project-tags">
-            <span>React</span>
-            <span>Spring Boot</span>
-            <span>JWT</span>
-            <span>REST API</span>
-          </div>
-
-          <div class="project-buttons">
-            <a href="https://youtu.be/HG4_LTiZE2o" class="btn btn-primary">Live Demo</a>
-            <a href="" class="btn btn-secondary">GitHub</a>
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="project-card hidden">
-
-        <div class="project-image">
-          <img src="images/notepad.jpg" alt="">
-          <div class="project-overlay"></div>
-        </div>
-
-        <div class="project-content">
-
-          <h3>Online Notepad</h3>
-
-          <p>
-            Secure ASP.NET Core note-taking application with authentication and rich text editor integration using SQL Server.
-          </p>
-
-          <div class="project-tags">
-            <span>ASP.NET Core</span>
-            <span>C#</span>
-            <span>SQL Server</span>
-          </div>
-
-          <div class="project-buttons">
-            <a href="
-https://www.youtube.com/watch?v=ybL_m0TdU0g&list=PLMJGjrFULWiecYtWhPsk6RbRlPDQvrdxq" class="btn btn-primary">Live Demo</a>
-            <a href="https://github.com/GuanKid/OnlineNotePad" class="btn btn-secondary">GitHub</a>
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="project-card hidden">
-
-        <div class="project-image">
-          <img src="images/crypto.jpg" alt="">
-          <div class="project-overlay"></div>
-        </div>
-
-        <div class="project-content">
-
-          <h3>Cryptocurrency Tracker</h3>
-
-          <p>
-            Real-time crypto price tracker supporting USD and ZAR with live API integration using CoinGecko.
-          </p>
-
-          <div class="project-tags">
-            <span>JavaScript</span>
-            <span>API</span>
-            <span>Frontend</span>
-          </div>
-
-          <div class="project-buttons">
-            <a href="https://youtu.be/_Gl8uVNRAnM" class="btn btn-primary">Live Demo</a>
-            <a href="https://github.com/GuanKid/CryptoPriceTracker" class="btn btn-secondary">GitHub</a>
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="project-card hidden">
-
-        <div class="project-image">
-          <img src="images/recipe.jpg" alt="">
-          <div class="project-overlay"></div>
-        </div>
-
-        <div class="project-content">
-
-          <h3>Recipe Finder</h3>
-
-          <p>
-            Dynamic recipe platform built with React and Firebase featuring API integration and responsive UI systems.
-          </p>
-
-          <div class="project-tags">
-            <span>React</span>
-            <span>Firebase</span>
-            <span>Responsive UI</span>
-          </div>
-
-          <div class="project-buttons">
-            <a href="https://youtu.be/n4yeVcX9-1c" class="btn btn-primary">Live Demo</a>
-            <a href="https://github.com/GuanKid/ReactJS/tree/main/Projects/recipe_finder" class="btn btn-secondary">GitHub</a>
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="project-card hidden">
-
-        <div class="project-image">
-          <img src="images/mern.jpg" alt="">
-          <div class="project-overlay"></div>
-        </div>
-
-        <div class="project-content">
-
-          <h3>Goal Tracking MERN App</h3>
-
-          <p>
-            Full-stack MERN task manager with secure JWT authentication and CRUD functionality for managing goals.
-          </p>
-
-          <div class="project-tags">
-            <span>MERN</span>
-            <span>MongoDB</span>
-            <span>JWT</span>
-          </div>
-
-          <div class="project-buttons">
-            <a href="https://youtu.be/VfZS5NQAuU0" class="btn btn-primary">Live Demo</a>
-            <a href="https://github.com/GuanKid/WebDev/tree/main/Project" class="btn btn-secondary">GitHub</a>
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="project-card hidden">
-
-        <div class="project-image">
-          <img src="images/blog.jpg" alt="">
-          <div class="project-overlay"></div>
-        </div>
-
-        <div class="project-content">
-
-          <h3>Blogpost Server</h3>
-
-          <p>
-            Backend Node.js application handling HTTP requests, content rendering, and server-side logic.
-          </p>
-
-          <div class="project-tags">
-            <span>Node.js</span>
-            <span>Backend</span>
-            <span>Server</span>
-          </div>
-
-          <div class="project-buttons">
-            <a href="https://youtu.be/mqtkIldU6xc" class="btn btn-primary">Live Demo</a>
-            <a href="https://github.com/GuanKid/NodeJS/tree/main/Projects/tutorial_1" class="btn btn-secondary">GitHub</a>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <section id="experience">
-
-    <h2 class="section-title hidden">Professional Experience</h2>
-
-    <div class="experience-box hidden">
-
-      <h3>Full Stack Developer</h3>
-
-      <h4>Compuways | Jan 2024 – Present</h4>
-
-      <ul>
-        <li>Developed and maintained responsive web applications using React, Node.js, ASP.NET Core, and Spring Boot</li>
-
-        <li>Designed and integrated RESTful APIs to support dynamic frontend functionality</li>
-
-        <li>Implemented secure authentication systems using JWT</li>
-
-        <li>Collaborated in code reviews and pair programming to improve development efficiency</li>
-
-        <li>Integrated third-party APIs to extend application functionality</li>
-
-        <li>Optimized application performance and improved user experience based on feedback</li>
-      </ul>
-
-    </div>
-
-  </section>
-
-  <section id="skills">
-
-    <h2 class="section-title hidden">Technical Skills</h2>
-
-    <p class="section-sub hidden">
-      Strong foundation in fullstack development, backend systems, frontend engineering, database management, and scalable software architecture.
-    </p>
-
-    <div class="skills">
-
-      <div class="skill-card hidden">
-
-        <i class="fa-solid fa-code"></i>
-
-        <h3>Frontend Development</h3>
-
-        <p>
-          Building responsive and interactive user interfaces using React, JavaScript, animations, and modern UI principles.
-        </p>
-
-      </div>
-
-      <div class="skill-card hidden">
-
-        <i class="fa-solid fa-server"></i>
-
-        <h3>Backend Engineering</h3>
-
-        <p>
-          Creating scalable APIs, authentication systems, and backend services using Node.js, ASP.NET Core, and Spring Boot.
-        </p>
-
-      </div>
-
-      <div class="skill-card hidden">
-
-        <i class="fa-solid fa-database"></i>
-
-        <h3>Database Management</h3>
-
-        <p>
-          Working with MongoDB, PostgreSQL, SQL Server, Firebase, and modern data-driven applications.
-        </p>
-
-      </div>
-
-      <div class="skill-card hidden">
-
-        <i class="fa-solid fa-wand-magic-sparkles"></i>
-
-        <h3>UI / UX Design</h3>
-
-        <p>
-          Designing clean digital experiences with smooth interactions, visual hierarchy, and modern aesthetics.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <section id="education">
-
-  <h2 class="section-title hidden">
-    Education & Certifications
-  </h2>
+  <h2 class="section-title hidden">Featured Projects</h2>
 
   <p class="section-sub hidden">
-    My educational background and completed certifications focused on software engineering, backend systems, frontend development, and fullstack technologies.
+    Projects focused on solving operational, communication, healthcare, and productivity challenges using scalable fullstack architecture, secure backend systems, and modern user experiences.
   </p>
+
+  <div class="featured-focus hidden">
+
+    <h3>Current Development Focus</h3>
+
+    <p>
+      Currently focused on building scalable communication systems, business dashboards, AI-powered support platforms, healthcare management solutions, and real-time applications with secure authentication, API integrations, responsive interfaces, and cloud-ready architecture.
+    </p>
+
+    <div class="focus-tags">
+      <span>Authentication Systems</span>
+      <span>Business Dashboards</span>
+      <span>AI Support Systems</span>
+      <span>REST APIs</span>
+      <span>Responsive Design</span>
+      <span>Real-Time Communication</span>
+    </div>
+
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- Messaging Platform -->
+
+    <!-- <div class="project-card hidden">
+
+      <div class="project-image">
+        <img src="images/messaging.jpg" alt="Messaging Platform">
+      </div>
+
+      <div class="project-content">
+
+        <h3>Real-Time Messaging Platform</h3>
+
+        <p>
+          Developing a modern communication platform focused on real-time messaging, secure authentication, user discovery, profile management, and responsive chat interfaces inspired by modern social communication systems.
+        </p>
+
+        <div class="project-features">
+          <span>• Real-Time Messaging</span>
+          <span>• JWT Authentication</span>
+          <span>• User Search System</span>
+          <span>• Profile Management</span>
+        </div>
+
+        <div class="project-tags">
+          <span>React</span>
+          <span>Node.js</span>
+          <span>MongoDB</span>
+          <span>Socket.IO</span>
+        </div>
+
+        <div class="project-buttons">
+          <a href="#" class="btn btn-primary">In Development</a>
+          <a href="#" class="btn btn-secondary">Private Repository</a>
+        </div>
+
+      </div>
+
+    </div> -->
+
+    <!-- Food Delivery System -->
+
+    <div class="project-card hidden">
+
+      <div class="project-image">
+        <img src="images/food.jpg" alt="Food Delivery System">
+      </div>
+
+      <div class="project-content">
+
+        <h3>Food Delivery Management System</h3>
+
+        <p>
+          Building a scalable food delivery and operations platform featuring order tracking, driver management, internal communication tools, customer notifications, and business workflow automation.
+        </p>
+
+        <div class="project-features">
+          <span>• Order Tracking</span>
+          <span>• Driver Management</span>
+          <span>• Internal Communication</span>
+          <span>• Workflow Automation</span>
+        </div>
+
+        <div class="project-tags">
+          <span>React</span>
+          <span>ASP.NET Core</span>
+          <span>PostgreSQL</span>
+          <span>REST APIs</span>
+        </div>
+
+        <div class="project-buttons">
+          <a href="#" class="btn btn-primary">In Development</a>
+          <a href="#" class="btn btn-secondary">Private Repository</a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Hospital Dashboard -->
+
+    <div class="project-card hidden">
+
+      <div class="project-image">
+        <img src="images/hospital.jpg" alt="Hospital Dashboard">
+      </div>
+
+      <div class="project-content">
+
+        <h3>Hospital ER Dashboard System</h3>
+
+        <p>
+          Designed a healthcare dashboard system focused on patient triage, emergency room monitoring, patient status management, and real-time operational visibility for healthcare environments.
+        </p>
+
+        <div class="project-features">
+          <span>• Patient Triage</span>
+          <span>• Live Status Updates</span>
+          <span>• Dashboard Analytics</span>
+          <span>• Emergency Monitoring</span>
+        </div>
+
+        <div class="project-tags">
+          <span>React</span>
+          <span>Node.js</span>
+          <span>MongoDB</span>
+          <span>Dashboard UI</span>
+        </div>
+
+        <div class="project-buttons">
+          <a href="#" class="btn btn-primary">In Development</a>
+          <a href="#" class="btn btn-secondary">Private Repository</a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- AI Support System -->
+
+    <div class="project-card hidden">
+
+      <div class="project-image">
+        <img src="images/ai.jpg" alt="AI Support System">
+      </div>
+
+      <div class="project-content">
+
+        <h3>AI Support & Chat System</h3>
+
+        <p>
+          Developing an AI-powered customer support and communication platform designed to streamline support interactions, automate responses, and improve business communication workflows.
+        </p>
+
+        <div class="project-features">
+          <span>• AI Conversations</span>
+          <span>• Smart Responses</span>
+          <span>• Support Automation</span>
+          <span>• Business Integration</span>
+        </div>
+
+        <div class="project-tags">
+          <span>AI Integration</span>
+          <span>React</span>
+          <span>Node.js</span>
+          <span>APIs</span>
+        </div>
+
+        <div class="project-buttons">
+          <a href="#" class="btn btn-primary">In Development</a>
+          <a href="#" class="btn btn-secondary">Private Repository</a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Business Dashboard -->
+
+    <div class="project-card hidden">
+
+      <div class="project-image">
+        <img src="images/dashboard.jpg" alt="Business Dashboard">
+      </div>
+
+      <div class="project-content">
+
+        <h3>Business Management Dashboard</h3>
+
+        <p>
+          Creating a centralized business management platform focused on analytics, operational tracking, communication systems, reporting tools, and workflow optimization.
+        </p>
+
+        <div class="project-features">
+          <span>• Analytics Dashboard</span>
+          <span>• Workflow Management</span>
+          <span>• Reporting Tools</span>
+          <span>• Operational Insights</span>
+        </div>
+
+        <div class="project-tags">
+          <span>React</span>
+          <span>Charts</span>
+          <span>Node.js</span>
+          <span>PostgreSQL</span>
+        </div>
+
+        <div class="project-buttons">
+          <a href="#" class="btn btn-primary">In Development</a>
+          <a href="#" class="btn btn-secondary">Private Repository</a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Goal Setter -->
+
+    <div class="project-card hidden">
+
+      <div class="project-image">
+        <img src="images/goal.jpg" alt="Goal Setter App">
+      </div>
+
+      <div class="project-content">
+
+        <h3>Goal Setter Application</h3>
+
+        <p>
+          Built a productivity-focused application enabling users to securely manage goals, track progress, and interact with responsive dashboards using authentication systems and REST API integration.
+        </p>
+
+        <div class="project-features">
+          <span>• Goal Tracking</span>
+          <span>• Authentication Systems</span>
+          <span>• REST APIs</span>
+          <span>• Responsive UI</span>
+        </div>
+
+        <div class="project-tags">
+          <span>React</span>
+          <span>Spring Boot</span>
+          <span>JWT</span>
+          <span>REST API</span>
+        </div>
+
+        <div class="project-buttons">
+          <a href="https://youtu.be/HG4_LTiZE2o" target="_blank" class="btn btn-primary">Live Demo</a>
+          <a href="#" class="btn btn-secondary">GitHub Repo</a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Online Notepad -->
+
+    <div class="project-card hidden">
+
+      <div class="project-image">
+        <img src="images/notepad.jpg" alt="Online Notepad">
+      </div>
+
+      <div class="project-content">
+
+        <h3>Online Notepad System</h3>
+
+        <p>
+          Developed a secure note management application using ASP.NET Core with authentication systems, SQL Server integration, structured backend architecture, and rich text editing functionality.
+        </p>
+
+        <div class="project-features">
+          <span>• Authentication</span>
+          <span>• SQL Server Integration</span>
+          <span>• Secure Data Storage</span>
+          <span>• Rich Text Editing</span>
+        </div>
+
+        <div class="project-tags">
+          <span>ASP.NET Core</span>
+          <span>C#</span>
+          <span>SQL Server</span>
+        </div>
+
+        <div class="project-buttons">
+          <a href="https://www.youtube.com/watch?v=ybL_m0TdU0g&list=PLMJGjrFULWiecYtWhPsk6RbRlPDQvrdxq" target="_blank" class="btn btn-primary">Live Demo</a>
+          <a href="https://github.com/GuanKid/OnlineNotePad" target="_blank" class="btn btn-secondary">GitHub Repo</a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Crypto Tracker -->
+
+    <div class="project-card hidden">
+
+      <div class="project-image">
+        <img src="images/crypto.jpg" alt="Cryptocurrency Tracker">
+      </div>
+
+      <div class="project-content">
+
+        <h3>Cryptocurrency Tracking Platform</h3>
+
+        <p>
+          Built a real-time cryptocurrency monitoring platform integrating external APIs to provide live market pricing, multi-currency support, and responsive financial tracking interfaces.
+        </p>
+
+        <div class="project-features">
+          <span>• Live API Data</span>
+          <span>• Real-Time Pricing</span>
+          <span>• Multi-Currency Support</span>
+          <span>• Responsive Interface</span>
+        </div>
+
+        <div class="project-tags">
+          <span>JavaScript</span>
+          <span>CoinGecko API</span>
+          <span>Frontend</span>
+          <span>REST APIs</span>
+        </div>
+
+        <div class="project-buttons">
+          <a href="https://youtu.be/_Gl8uVNRAnM" target="_blank" class="btn btn-primary">Live Demo</a>
+          <a href="https://github.com/GuanKid/CryptoPriceTracker" target="_blank" class="btn btn-secondary">GitHub Repo</a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Recipe Finder -->
+
+    <div class="project-card hidden">
+
+      <div class="project-image">
+        <img src="images/recipe.jpg" alt="Recipe Finder">
+      </div>
+
+      <div class="project-content">
+
+        <h3>Recipe Finder Platform</h3>
+
+        <p>
+          Developed a modern recipe discovery platform with Firebase integration, dynamic API-powered search functionality, and responsive user-focused interface design.
+        </p>
+
+        <div class="project-features">
+          <span>• API Integration</span>
+          <span>• Firebase Integration</span>
+          <span>• Dynamic Search</span>
+          <span>• Responsive UI</span>
+        </div>
+
+        <div class="project-tags">
+          <span>React</span>
+          <span>Firebase</span>
+          <span>JavaScript</span>
+          <span>Responsive Design</span>
+        </div>
+
+        <div class="project-buttons">
+          <a href="https://youtu.be/n4yeVcX9-1c" target="_blank" class="btn btn-primary">Live Demo</a>
+          <a href="https://github.com/GuanKid/ReactJS/tree/main/Projects/recipe_finder" target="_blank" class="btn btn-secondary">GitHub Repo</a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- MERN -->
+
+    <div class="project-card hidden">
+
+      <div class="project-image">
+        <img src="images/mern.jpg" alt="Goal Tracking MERN App">
+      </div>
+
+      <div class="project-content">
+
+        <h3>Goal Tracking MERN Platform</h3>
+
+        <p>
+          Built a productivity-focused fullstack platform allowing users to securely manage and track goals using JWT authentication, CRUD functionality, and responsive dashboards.
+        </p>
+
+        <div class="project-features">
+          <span>• JWT Authentication</span>
+          <span>• MongoDB Persistence</span>
+          <span>• REST APIs</span>
+          <span>• Responsive UI</span>
+        </div>
+
+        <div class="project-tags">
+          <span>MERN Stack</span>
+          <span>MongoDB</span>
+          <span>JWT</span>
+          <span>Express.js</span>
+        </div>
+
+        <div class="project-buttons">
+          <a href="https://youtu.be/VfZS5NQAuU0" target="_blank" class="btn btn-primary">Live Demo</a>
+          <a href="https://github.com/GuanKid/WebDev/tree/main/Project" target="_blank" class="btn btn-secondary">GitHub Repo</a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Blog Platform -->
+
+    <div class="project-card hidden">
+
+      <div class="project-image">
+        <img src="images/blog.jpg" alt="Blog Management Platform">
+      </div>
+
+      <div class="project-content">
+
+        <h3>Blog Management Platform</h3>
+
+        <p>
+          Created a Node.js and MongoDB powered blogging platform with authentication, file uploads, server-side rendering, and database-driven content management.
+        </p>
+
+        <div class="project-features">
+          <span>• MongoDB Atlas</span>
+          <span>• Authentication</span>
+          <span>• File Uploads</span>
+          <span>• MVC Architecture</span>
+        </div>
+
+        <div class="project-tags">
+          <span>Node.js</span>
+          <span>MongoDB</span>
+          <span>Express.js</span>
+          <span>Backend Systems</span>
+        </div>
+
+        <div class="project-buttons">
+          <a href="https://youtu.be/mqtkIldU6xc" target="_blank" class="btn btn-primary">Live Demo</a>
+          <a href="https://github.com/GuanKid/NodeJS/tree/main/Projects/tutorial_1" target="_blank" class="btn btn-secondary">GitHub Repo</a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<section id="experience">
+
+  <h2 class="section-title hidden">Professional Experience</h2>
+
+  <div class="experience-box hidden">
+
+    <h3>Full Stack Developer</h3>
+
+    <h4 style="color:var(--primary); margin-top:10px;">Compuways | Jan 2024 – Present</h4>
+
+    <ul>
+      <li>Built and maintained responsive web applications using React, Node.js, ASP.NET Core, and Spring Boot</li>
+      <li>Integrated RESTful APIs to support scalable frontend and backend communication</li>
+      <li>Implemented secure authentication systems using JWT and session-based authentication</li>
+      <li>Collaborated with developers through debugging, testing, and feature development</li>
+      <li>Improved application usability and user experience through interface optimization</li>
+      <li>Worked with databases including MongoDB, PostgreSQL, and SQL Server</li>
+    </ul>
+
+  </div>
+
+</section>
+
+<section id="skills">
+
+  <h2 class="section-title hidden">Technical Skills</h2>
+
+  <p class="section-sub hidden">
+    Strong foundation in backend systems, frontend engineering, scalable APIs, database management, and modern UI/UX development.
+  </p>
+
+  <div class="skills-grid">
+
+    <div class="skill-card hidden">
+      <i class="fa-solid fa-laptop-code"></i>
+      <h3>Frontend Development</h3>
+      <p>
+        Building responsive, animated, and accessible user interfaces using React, JavaScript, HTML, CSS, and modern design systems.
+      </p>
+    </div>
+
+    <div class="skill-card hidden">
+      <i class="fa-solid fa-server"></i>
+      <h3>Backend Engineering</h3>
+      <p>
+        Designing scalable APIs, authentication systems, and backend architectures using Node.js, ASP.NET Core, and Spring Boot.
+      </p>
+    </div>
+
+    <div class="skill-card hidden">
+      <i class="fa-solid fa-database"></i>
+      <h3>Database Management</h3>
+      <p>
+        Working with relational and NoSQL databases including MongoDB, PostgreSQL, SQL Server, and Firebase.
+      </p>
+    </div>
+
+    <div class="skill-card hidden">
+      <i class="fa-solid fa-cloud"></i>
+      <h3>Deployment & Tools</h3>
+      <p>
+        Experience using Git, Docker, Render, MongoDB Atlas, Swagger, and cloud deployment workflows for modern applications.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<section id="education">
+
+  <h2 class="section-title hidden">Education & Certifications</h2>
 
   <div class="edu-cert-grid">
 
-    <!-- EDUCATION -->
-
     <div class="education-box hidden">
-
-      <div class="section-icon">
-        <i class="fa-solid fa-graduation-cap"></i>
-      </div>
 
       <h3>Education</h3>
 
-      <div class="edu-item">
-
+      <div style="margin-top:24px;">
         <h4>Software Development Certification</h4>
-
-        <span>Code College — 2025</span>
-
+        <p style="color:var(--muted); margin-top:6px;">Code College — 2025</p>
       </div>
 
-      <div class="edu-item">
-
+      <div style="margin-top:28px;">
         <h4>High School Diploma</h4>
-
-        <span>Douglas Mbopa High School — 2018</span>
-
+        <p style="color:var(--muted); margin-top:6px;">Douglas Mbopa High School — 2018</p>
       </div>
 
     </div>
 
-    <!-- CERTIFICATIONS -->
-
     <div class="education-box hidden">
-
-      <div class="section-icon">
-        <i class="fa-solid fa-award"></i>
-      </div>
 
       <h3>Certifications</h3>
 
-<p class="cert-provider">
-  All certifications completed through Code College (2024 – 2025)
-</p>
       <div class="cert-grid">
-
-        <div class="cert-item">C# & .NET Core</div>
-
         <div class="cert-item">ASP.NET Core</div>
-
-        <div class="cert-item">Java Developer Bootcamp</div>
-
-        <div class="cert-item">Spring Framework</div>
-
-        <div class="cert-item">SQL</div>
-
-        <div class="cert-item">MERN Stack</div>
-
         <div class="cert-item">React & Node.js</div>
-
+        <div class="cert-item">Spring Framework</div>
+        <div class="cert-item">Java Developer</div>
+        <div class="cert-item">MERN Stack</div>
+        <div class="cert-item">SQL</div>
         <div class="cert-item">JavaScript</div>
-
-        <div class="cert-item">Web Development Bootcamp</div>
-
-        <div class="cert-item">Introduction to Programming</div>
-
+        <div class="cert-item">C# & .NET</div>
       </div>
-
-     
 
     </div>
 
@@ -1056,101 +1206,107 @@ https://www.youtube.com/watch?v=ybL_m0TdU0g&list=PLMJGjrFULWiecYtWhPsk6RbRlPDQvr
 
 </section>
 
-  <section id="contact">
+<section>
 
-    <div class="contact-box hidden">
+  <div class="learning-box hidden">
 
-      <h2>Let's Build Something Great</h2>
+    <h2 class="section-title">Currently Learning</h2>
 
-      <p>
-        Open to junior developer opportunities, collaborations, freelance projects, and fullstack software development roles where I can contribute, grow, and build impactful systems.
-      </p>
+    <ul>
+      <li>Docker containerization and deployment workflows</li>
+      <li>CI/CD pipelines and automated deployments</li>
+      <li>Advanced ASP.NET Core backend architecture</li>
+      <li>Cloud hosting using Render and Azure</li>
+      <li>PostgreSQL optimization and scaling</li>
+    </ul>
 
-      <div class="buttons" style="justify-content:center; flex-wrap:wrap;">
+  </div>
 
-  <a href="mailto:gwanzuradesire@gmail.com" class="btn btn-primary">
-    <i class="fa-solid fa-envelope"></i>
-    Email Me
-  </a>
+</section>
 
-  <a href="tel:+27766161685" class="btn btn-secondary">
-    <i class="fa-solid fa-phone"></i>
-    076 616 1685
-  </a>
+<section id="contact">
 
-  <a href="https://github.com/GuanKid" target="_blank" class="btn btn-secondary">
-    <i class="fa-brands fa-github"></i>
-    GitHub
-  </a>
+  <div class="contact-box hidden">
 
-  <a href="https://www.linkedin.com/in/desire-gwanzura/" target="_blank" class="btn btn-secondary">
-    <i class="fa-brands fa-linkedin"></i>
-    LinkedIn
-  </a>
+    <h2>Let’s Build Something Great</h2>
 
-  <!-- <a href="cv/" download class="btn btn-secondary">
-    <i class="fa-solid fa-file-arrow-down"></i>
-    View CV
-  </a> -->
+    <p>
+      Open to junior developer opportunities, freelance projects, collaborations, and fullstack development roles where I can contribute to meaningful systems while continuing to grow as a software engineer.
+    </p>
 
-</div>
+    <div class="buttons" style="justify-content:center;">
 
-      </div>
+      <a href="mailto:gwanzuradesire@gmail.com" class="btn btn-primary">
+        <i class="fa-solid fa-envelope"></i>
+        Email Me
+      </a>
+
+      <a href="tel:+27766161685" class="btn btn-secondary">
+        <i class="fa-solid fa-phone"></i>
+        076 616 1685
+      </a>
+
+      <a href="https://github.com/GuanKid" target="_blank" class="btn btn-secondary">
+        <i class="fa-brands fa-github"></i>
+        GitHub
+      </a>
+
+      <a href="https://www.linkedin.com/in/desire-gwanzura/" target="_blank" class="btn btn-secondary">
+        <i class="fa-brands fa-linkedin"></i>
+        LinkedIn
+      </a>
 
     </div>
 
-  </section>
+  </div>
 
-  <footer>
-    © 2026 Desire Gwanzura • Full Stack Developer Portfolio
-  </footer>
+</section>
 
-  <script>
+<footer>
+  © 2026 Desire Gwanzura • Full Stack Developer Portfolio
+</footer>
 
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          entry.target.classList.add('show');
-        }
-      });
-    },{
-      threshold:0.15
+<script>
+
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+      }
+    });
+  },{
+    threshold:0.15
+  });
+
+  document.querySelectorAll('.hidden').forEach(el=>observer.observe(el));
+
+  const sections = document.querySelectorAll("section");
+  const navLinks = document.querySelectorAll(".nav-links a");
+
+  window.addEventListener("scroll",()=>{
+
+    let current = "";
+
+    sections.forEach(section=>{
+      const sectionTop = section.offsetTop;
+
+      if(pageYOffset >= sectionTop - 200){
+        current = section.getAttribute("id");
+      }
     });
 
-    const hiddenElements = document.querySelectorAll('.hidden');
+    navLinks.forEach(link=>{
+      link.classList.remove("active");
 
-    hiddenElements.forEach(el=>observer.observe(el));
-
-    const sections = document.querySelectorAll("section");
-    const navLinks = document.querySelectorAll(".nav-links a");
-
-    window.addEventListener("scroll",()=>{
-
-      let current = "";
-
-      sections.forEach(section=>{
-
-        const sectionTop = section.offsetTop;
-
-        if(pageYOffset >= sectionTop - 200){
-          current = section.getAttribute("id");
-        }
-
-      });
-
-      navLinks.forEach(link=>{
-
-        link.classList.remove("active");
-
-        if(link.getAttribute("href").includes(current)){
-          link.classList.add("active");
-        }
-
-      });
-
+      if(link.getAttribute("href").includes(current)){
+        link.classList.add("active");
+      }
     });
 
-  </script>
+  });
+
+</script>
 
 </body>
 </html>
+
